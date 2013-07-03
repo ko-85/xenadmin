@@ -45,9 +45,12 @@ then
 fi
 
 set -e
-
+pushd $PWD
 ROOT_DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )/../.." && pwd )"
+REPO="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+popd >/dev/null
 
+echo "ROOT=${ROOT_DIR}"
 production_jenkins_build()
 {
     source ${ROOT_DIR}/xenadmin.git/mk/declarations.sh

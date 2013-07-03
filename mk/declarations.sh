@@ -46,6 +46,7 @@ fi
 # that's the code to get the branch name of the repository
 SOURCE="${BASH_SOURCE[0]}"
 DIR="$( dirname "$SOURCE" )"
+pushd $PWD
 while [ -h "$SOURCE" ]
 do 
   SOURCE="$(readlink "$SOURCE")"
@@ -53,6 +54,7 @@ do
   DIR="$( cd -P "$( dirname "$SOURCE"  )" && pwd )"
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+popd
 
 if [ -z "${JOB_NAME+xxx}" ]
 then 
@@ -78,7 +80,14 @@ then
     echo "Warning: BUILD_URL env var not set, we will use 'n/a'"
 fi
 
-get_GIT_REVISION=${GIT_COMMIT}
+
+if [ -z "${GIT_COMMIT+xxx}" ]
+then 
+    GIT_COMMIT="none"
+    echo "Warning: GIT_COMMENT env var not set, we will use 'none'"
+fi
+
+get_GIT_REVISION="${GIT_COMMIT}"
 
 if [ -z "${get_GIT_REVISION+xxx}" ]
 then 
@@ -86,8 +95,21 @@ then
     echo "Warning: GIT_COMMIT env var not set, we will use $get_GIT_REVISION"
 fi
 
-XS_BRANCH=`cd $DIR;git config --get remote.origin.url|sed -e 's@.*carbon/\(.*\)/xenadmin.git.*@\1@'`
-echo Running on branch: $XS_BRANCH
+pwd
+BRANCH=`git --git-dir="$REPO/.git" rev-parse --abbrev-ref HEAD`
+
+[ -z "$BRANCH" ] && echo "Unable to detect branch name" && exit 1;
+
+if [ "$BRANCH" = "master" ]
+then
+    XS_BRANCH="trunk"
+else
+    XS_BRANCH=`cd $DIR;git config --get remote.origin.url|sed -e 's@.*carbon/\(.*\)/xenadmin.git.*@\1@'`
+    [ -z "$XS_BRANCH" ] && echo "Unable to detect branch name, git returned: " `cd $DIR;git config --get remote.origin.url` && exit 1;
+fi
+
+
+echo "Running on branch: ${XS_BRANCH} (${BRANCH})"
 
 cd ${ROOT_DIR}
 if [ -d "xenadmin-ref.hg" ]
@@ -106,9 +128,8 @@ get_BUILD_URL=${BUILD_URL}
 #do everything in place as jenkins runs a clean build, i.e. will delete previous artifacts on starting
 if [ -z "${WORKSPACE+xxx}" ]
 then 
-    DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )/../.." && pwd )"
-    WORKSPACE=${DIR}
-    echo "Warning: WORKSPACE env var not set, we will use ${WORKSPACE}"
+    WORKSPACE="$( cd "$DIR/../.." && pwd )"
+    echo "Warning: WORKSPACE env var not set, we will use '${WORKSPACE}'"
 fi
 
 if which cygpath >/dev/null; then

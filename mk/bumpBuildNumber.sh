@@ -36,7 +36,7 @@ source "$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/declarations.sh"
 
 if [ $get_JOB_NAME = "devbuild" ] ; then
     echo Warning: devbuild detected so we will skip the build number increment. All dev builds will have build number 0.
-    exit 0
+    return 0
 fi
 
 url="${JENKINS_SERVER}/job/${get_JOB_NAME}/"
@@ -44,7 +44,7 @@ if curl -s --head --fail "${url}"; then
   echo "URL exists: ${url}"
 else
   echo "URL does not exist: ${url}"
-  exit 1
+  return 1
 fi
 
 PSQL="ssh -q xenbuild@xenbuilder.uk.xensource.com PGPASSWORD=xenadmindb psql -q -A -t xenbuilder xenadmin"
