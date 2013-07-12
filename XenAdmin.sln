@@ -10,13 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandLib", "CommandLib\Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xva_verify", "xva_verify\xva_verify.csproj", "{2A70D7E7-EAB2-4C36-B3F4-85B79D2384B5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Splash", "splash\splash.vcproj", "{AFB19C9D-DD63-478B-A4A3-8452CBD0B9AB}"
-	ProjectSection(ProjectDependencies) = postProject
-		{70BDA4BC-F062-4302-8ACD-A15D8BF31D65} = {70BDA4BC-F062-4302-8ACD-A15D8BF31D65}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XenAdminTests", "XenAdminTests\XenAdminTests.csproj", "{21B9482C-D255-40D5-ABA7-C8F00F99547C}"
-EndProject
+
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XenCenterLib", "XenCenterLib\XenCenterLib.csproj", "{9861DFA1-B41F-432D-A43F-226257DEBBB9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XenCenterVNC", "XenCenterVNC\XenCenterVNC.csproj", "{BD345C89-E8F4-4767-9BE0-1F0EAB7FA927}"
