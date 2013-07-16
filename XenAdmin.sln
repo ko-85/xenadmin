@@ -21,8 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XenOvfApi", "XenOvfApi\XenO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XenOvfTransport", "XenOvfTransport\XenOvfTransport.csproj", "{9F7E6285-5CBF-41B4-8CB9-AB06DFF90DC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFUValidator", "CFUValidator\CFUValidator.csproj", "{39308480-78C3-40B4-924D-06914F343ACD}"
-EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
