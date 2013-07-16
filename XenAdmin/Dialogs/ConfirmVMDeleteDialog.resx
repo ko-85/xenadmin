@@ -255,6 +255,7 @@
   <data name="listView.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
   </data>
+ <!-- MONO doesn't like thise base64 encoded thingies
   <data name="listView.Groups" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
@@ -276,6 +277,7 @@
         AQAAAAd2YWx1ZV9fAAgCAAAAAAAAAAoGBQAAABZsaXN0Vmlld0dyb3VwU25hcHNob3RzCw==
 </value>
   </data>
+-->
   <data name="listView.Location" type="System.Drawing.Point, System.Drawing">
     <value>53, 69</value>
   </data>
